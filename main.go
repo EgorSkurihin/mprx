@@ -1,7 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"os"
+
+	"github.com/EgorSkurihin/mprx/cmd/cmdstart"
+	"github.com/spf13/cobra"
+)
 
 func main() {
-	fmt.Println("first commit")
+	rootCmd := cobra.Command{
+		SilenceErrors: true,
+		SilenceUsage:  true,
+		Use:           "mprx",
+	}
+	rootCmd.AddCommand(
+		cmdstart.NewCmd(),
+	)
+
+	exitCode := 0
+	if err := rootCmd.Execute(); err != nil {
+		log.Fatal(err.Error())
+		exitCode = 1
+	}
+	os.Exit(exitCode)
 }
