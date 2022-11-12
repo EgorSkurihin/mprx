@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/EgorSkurihin/mprx/cmd/cmdproxy"
 	"github.com/EgorSkurihin/mprx/cmd/cmdstart"
 	"github.com/spf13/cobra"
 )
@@ -16,6 +17,7 @@ func main() {
 	}
 	rootCmd.AddCommand(
 		cmdstart.NewCmd(),
+		cmdproxy.NewCmd(),
 	)
 
 	exitCode := 0

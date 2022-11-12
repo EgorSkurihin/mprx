@@ -1,4 +1,4 @@
-package cmdstart
+package cmdproxy
 
 import (
 	"fmt"
@@ -7,10 +7,10 @@ import (
 )
 
 func NewCmd() *cobra.Command {
-	var params Start
+	var params Proxy
 
 	cmd := cobra.Command{
-		Use:   "start",
+		Use:   "proxy",
 		Short: "Start proxy server for mongodb db and website watch logs and dashboards",
 		PreRunE: func(cmd *cobra.Command, args []string) error {
 			if err := params.Validate(); err != nil {
@@ -28,10 +28,10 @@ func NewCmd() *cobra.Command {
 	return &cmd
 }
 
-func runStartCmd(params *Start) error {
-	facade, err := newStartFacade(params)
+func runStartCmd(params *Proxy) error {
+	facade, err := newProxyFacade(params)
 	if err != nil {
 		return err
 	}
-	return facade.startServer()
+	return facade.start()
 }
