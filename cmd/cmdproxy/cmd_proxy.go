@@ -11,7 +11,7 @@ func NewCmd() *cobra.Command {
 
 	cmd := cobra.Command{
 		Use:   "proxy",
-		Short: "Start proxy server for mongodb db and website watch logs and dashboards",
+		Short: "Start proxy server for mongodb db",
 		PreRunE: func(cmd *cobra.Command, args []string) error {
 			if err := params.Validate(); err != nil {
 				return fmt.Errorf("fail to validate start flags: %w", err)

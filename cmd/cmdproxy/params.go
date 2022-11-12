@@ -7,7 +7,8 @@ import (
 )
 
 type Proxy struct {
-	ProxyPort int
+	ProxyAddr   string
+	MongoDBAddr string
 
 	ConfigUpdateInterval time.Duration
 	ConfigPath           string
@@ -20,7 +21,8 @@ type Proxy struct {
 func (params *Proxy) SetupFlags(cmd *cobra.Command) {
 	flags := cmd.Flags()
 
-	flags.IntVar(&params.ProxyPort, "proxy-port", 27018, "http server port")
+	flags.StringVar(&params.ProxyAddr, "proxy-addr", "localhost:27018", "proxy address")
+	flags.StringVar(&params.MongoDBAddr, "mongo-addr", "localhost:27017", "mongo-db address")
 
 	flags.StringVar(&params.ConfigPath, "config-path", "config.yaml", "url to feeds config file (required)")
 
